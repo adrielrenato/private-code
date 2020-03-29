@@ -22,5 +22,5 @@ Auth::routes();
 Route::group(['middleware' => ['auth', 'tenant', 'check_user_has_group']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('/groups', 'GroupController');
-    Route::resource('/clients', 'ClientController');
+    Route::resource('/customers', 'CustomerController');
 });

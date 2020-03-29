@@ -222,8 +222,8 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'clients',
-            'url'  => 'clients',
+            'text' => 'customers',
+            'url'  => 'customers',
             'icon' => 'fas fa-user-tie',
         ],
         [

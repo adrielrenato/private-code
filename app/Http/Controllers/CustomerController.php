@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,11 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('viewAny', new Customer());
+
+        $customers = Customer::all();
+
+        return view('customers.index', ['customers' => $customers]);
     }
 
     /**

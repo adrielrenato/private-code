@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePhoneByClientsTable extends Migration
+class CreatePhoneByCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePhoneByClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('phone_by_clients', function (Blueprint $table) {
+        Schema::create('phone_by_customers', function (Blueprint $table) {
             $table->id();
             $table->string('mask');
             $table->string('phone');
-            $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->unsignedBigInteger('account_id');
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreatePhoneByClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phone_by_clients');
+        Schema::dropIfExists('phone_by_customers');
     }
 }
