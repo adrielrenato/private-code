@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Core\Facades\TenantFacade;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CustomerFormRequest extends FormRequest
 {
@@ -25,7 +27,13 @@ class CustomerFormRequest extends FormRequest
     {
         return [
             'name' => 'required|string|between:3,120',
-            'email' => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('customers')
+                    ->where('account_id', TenantFacade::account()->id)
+                    ->ignore($this->customer)
+            ],
             'phone' => 'required',
             'phone.*' => 'required|string'
         ];
