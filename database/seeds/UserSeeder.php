@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
             'email' => 'test@privatecode.com',
             'password' => Hash::make('123456'),
             'user_role_id' => UserRole::OWNER,
-            'group_id' => 1, 
             'created_at' => new Carbon(), 
             'updated_at' => new Carbon()
         ]);

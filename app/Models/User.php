@@ -37,6 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function fillGroup(int $groupId)
+    {
+        $this->group_id = $groupId;
+
+        $this->save();
+    }
+
     /**
      * Retorna a instancia da relação do nível do usuário.
      *
@@ -45,5 +52,35 @@ class User extends Authenticatable
     public function userRole()
     {
         return $this->belongsTo('App\Models\UserRole', 'user_role_id', 'id');
+    }
+
+    /**
+     * Retorna a instancia da relação do grupo.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo('App\Models\Group', 'group_id', 'id');
+    }
+
+    /**
+     * Verifica se o nível do usuário é owner.
+     *
+     * @return bool
+     */
+    public function isOwner()
+    {
+        return $this->user_role_id === UserRole::OWNER;
+    }
+
+    /**
+     * Verifica se o nível do usuário é user.
+     *
+     * @return bool
+     */
+    public function isUser()
+    {
+        return $this->user_role_id === UserRole::USER;
     }
 }

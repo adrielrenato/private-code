@@ -15,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('/groups', 'GroupController');
+
+    Route::group(['middleware' => 'check_user_has_group'], function () {
+        Route::get('/home', 'HomeController@index')->name('home');
+    });
+});

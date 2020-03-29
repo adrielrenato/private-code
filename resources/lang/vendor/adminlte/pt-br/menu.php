@@ -13,6 +13,7 @@ return [
     'level_two'                     => 'Nível 2',
     'level_three'                   => 'Nível 3',
     'labels'                        => 'Etiquetas',
+    'groups'                        => 'Grupos',
     'Important'                     => 'Importante',
     'Warning'                       => 'Aviso',
     'Information'                   => 'Informação',
