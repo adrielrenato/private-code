@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Core\Traits\BelongsToTenant;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, BelongsToTenant;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'user_role_id', 'group_id'
+        'name', 'email', 'password', 'user_role_id', 'group_id', 'account_id'
     ];
 
     /**

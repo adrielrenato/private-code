@@ -17,8 +17,7 @@ class GroupController extends Controller
     {
         $this->authorize('viewAny', new Group());
 
-        $groups = Group::where('created_by_user_id', auth()->user()->id)
-            ->get();
+        $groups = Group::all();
 
         return view('groups.index', ['groups' => $groups]);
     }
@@ -45,7 +44,7 @@ class GroupController extends Controller
     {
         $this->authorize('create', new Group());
 
-        Group::create(array_merge($request->validated(), ['created_by_user_id' => auth()->user()->id]));
+        Group::create(array_merge($request->validated()));
 
         return redirect()->route('groups.index');
     }

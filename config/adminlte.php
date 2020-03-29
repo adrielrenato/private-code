@@ -222,9 +222,19 @@ return [
         ],
         ['header' => 'account_settings'],
         [
+            'text' => 'clients',
+            'url'  => 'clients',
+            'icon' => 'fas fa-user-tie',
+        ],
+        [
             'text' => 'groups',
             'url'  => 'groups',
             'icon' => 'fas fa-users',
+        ],
+        [
+            'text' => 'users',
+            'url'  => 'users',
+            'icon' => 'fas fa-id-badge',
         ],
         [
             'text'    => 'multilevel',

@@ -14,6 +14,8 @@ return [
     'level_three'                   => 'Nível 3',
     'labels'                        => 'Etiquetas',
     'groups'                        => 'Grupos',
+    'clients'                       => 'Clientes',
+    'users'                         => 'Usuários',
     'Important'                     => 'Importante',
     'Warning'                       => 'Aviso',
     'Information'                   => 'Informação',

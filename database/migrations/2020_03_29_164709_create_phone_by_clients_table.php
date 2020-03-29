@@ -19,6 +19,8 @@ class CreatePhoneByClientsTable extends Migration
             $table->string('phone');
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
+            $table->unsignedBigInteger('account_id');
+            $table->foreign('account_id')->references('id')->on('accounts');
             $table->timestamps();
         });
     }

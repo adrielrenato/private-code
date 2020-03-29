@@ -30,7 +30,7 @@ class GroupPolicy
      */
     public function view(User $user, Group $group)
     {
-        return $user->isOwner() && $group->created_by_user_id === $user->id;
+        return $user->isOwner();
     }
 
     /**
@@ -53,7 +53,7 @@ class GroupPolicy
      */
     public function update(User $user, Group $group)
     {
-        return $user->isOwner() && $group->created_by_user_id === $user->id;
+        return $user->isOwner();
     }
 
     /**
@@ -65,7 +65,7 @@ class GroupPolicy
      */
     public function delete(User $user, Group $group)
     {
-        return $user->isOwner() && $group->created_by_user_id === $user->id;
+        return $user->isOwner();
     }
 
     /**

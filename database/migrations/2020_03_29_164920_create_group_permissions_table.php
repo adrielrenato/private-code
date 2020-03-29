@@ -19,6 +19,8 @@ class CreateGroupPermissionsTable extends Migration
             $table->foreign('permission_id')->references('id')->on('permissions');
             $table->unsignedBigInteger('group_id');
             $table->foreign('group_id')->references('id')->on('groups');
+            $table->unsignedBigInteger('account_id');
+            $table->foreign('account_id')->references('id')->on('accounts');
             $table->boolean('active');
             $table->timestamps();
         });
