@@ -17,7 +17,8 @@ class GroupController extends Controller
     {
         $this->authorize('viewAny', new Group());
 
-        $groups = Group::all();
+        $groups = Group::orderBy('name', 'asc')
+            ->get();
 
         return view('groups.index', ['groups' => $groups]);
     }

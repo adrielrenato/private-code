@@ -3,24 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Customer;
-use App\Http\Requests\CustomerFormRequest;
 use App\Models\PhoneByCustomer;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CustomerFormRequest;
 
 class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('viewAny', new Customer());
 
-        $customers = Customer::all();
+        $customers = Customer::where(function ($query) use ($request) {
+            if ($request->has('search')) {
+                $query->where('name', 'like', '%'.$request->get('search').'%')
+                    ->orWhere('email', 'like', '%'.$request->get('search').'%')
+                    ->orWhereExists(function ($query) use ($request) {
+                        $query->from('phone_by_customers')
+                            ->select(DB::raw(1))
+                            ->where('phone', 'like', '%'.$request->get('search').'%');
+                    });
+            }
+        })->orderBy('name', 'asc')
+        ->get();
 
         return view('customers.index', ['customers' => $customers]);
     }
