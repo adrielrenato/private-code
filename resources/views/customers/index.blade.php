@@ -3,14 +3,14 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Grupo</h1>
+    <h1 class="m-0 text-dark">Clientes</h1>
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-md-12 text-right">
-            <a href="{{ route('groups.create') }}" class="btn btn-primary">
-                Cadastrar novo grupo
+            <a href="{{ route('customers.create') }}" class="btn btn-primary">
+                Cadastrar novo cliente
             </a>
         </div>
     </div>
@@ -18,21 +18,23 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    @if (count($groups) > 0)
+                    @if (count($customers) > 0)
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Nome</th>
+                                <th scope="col">E-mail</th>
                                 <th scope="col">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($groups as $group)
+                            @foreach ($customers as $customer)
                             <tr>
-                                <td>{{ $group->name }}</td>
+                                <td>{{ $customer->name }}</td>
+                                <td>{{ $customer->email }}</td>
                                 <td>
-                                    <form action="{{ route('groups.destroy', [$group->id]) }}" method="post">
-                                        <a class="btn btn-secondary" href="{{ route('groups.edit', [$group->id]) }}">
+                                    <form action="{{ route('customers.destroy', [$customer->id]) }}" method="post">
+                                        <a class="btn btn-secondary" href="{{ route('customers.edit', [$customer->id]) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         {{ csrf_field() }}
@@ -48,7 +50,7 @@
                     </table>
                     @else
                     <div class="text-center">
-                        Nenhum grupo a ser exibido!
+                        Nenhum cliente a ser exibido!
                     </div>
                     @endif
                 </div>
