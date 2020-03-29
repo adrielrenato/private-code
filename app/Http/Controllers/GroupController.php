@@ -44,7 +44,7 @@ class GroupController extends Controller
     {
         $this->authorize('create', new Group());
 
-        Group::create(array_merge($request->validated()));
+        Group::create($request->validated());
 
         return redirect()->route('groups.index');
     }

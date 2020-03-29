@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PhoneByCustomer extends Model
 {
     use BelongsToTenant;
+
+    protected $fillable = [
+        'phone',
+        'customer_id'
+    ];
 }

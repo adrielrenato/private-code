@@ -30,7 +30,7 @@ class CustomerPolicy
      */
     public function view(User $user, Customer $customer)
     {
-        //
+        return $user->isOwner();
     }
 
     /**
@@ -41,7 +41,7 @@ class CustomerPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->isOwner();
     }
 
     /**
@@ -53,7 +53,7 @@ class CustomerPolicy
      */
     public function update(User $user, Customer $customer)
     {
-        //
+        return $user->isOwner();
     }
 
     /**
@@ -65,7 +65,7 @@ class CustomerPolicy
      */
     public function delete(User $user, Customer $customer)
     {
-        //
+        return $user->isOwner();
     }
 
     /**

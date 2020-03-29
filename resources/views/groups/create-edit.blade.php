@@ -24,7 +24,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="name">Nome do grupo: </label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{ isset($group) ? $group->name : '' }}">
+                                <input type="text" name="name" id="name" class="form-control" value="{{ isset($group) ? $group->name : '' }}" placeholder="Exemplo: Monitoramento">
                                 @if ($errors->has('name'))
                                 <ul>   
                                     @foreach($errors->get('name') as $error)

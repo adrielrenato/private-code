@@ -15,7 +15,6 @@ class CreatePhoneByCustomersTable extends Migration
     {
         Schema::create('phone_by_customers', function (Blueprint $table) {
             $table->id();
-            $table->string('mask');
             $table->string('phone');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
