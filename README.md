@@ -11,3 +11,6 @@ criar virtual host
 
 PASSOS PARA RODAR
 npm run dev
+php artisan serve
+criar o banco no mysql
+copiar o .env.example
