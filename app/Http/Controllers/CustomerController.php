@@ -76,7 +76,13 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $customer = Customer::with(['phonesByCustomer'])
+            ->where('id', $id)
+            ->firstOrFail();
+
+        $this->authorize('view', $customer);
+
+        return view('customers.show', ['customer' => $customer]);
     }
 
     /**
@@ -123,11 +129,19 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $customer = Customer::findOrFail($id);
+        $customer = Customer::with(['phonesByCustomer'])
+            ->where('id', $id)
+            ->firstOrFail();
 
         $this->authorize('delete', $customer);
 
-        $customer->delete();
+        DB::transaction(function () use ($customer) {
+            foreach ($customer->phonesByCustomer as $phone) {
+                $phone->delete();
+            }
+
+            $customer->delete();
+        });
 
         return redirect()->route('customers.index');
     }

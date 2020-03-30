@@ -31,13 +31,13 @@
                             <tr>
                                 <td>{{ $group->name }}</td>
                                 <td>
-                                    <form action="{{ route('groups.destroy', [$group->id]) }}" method="post">
-                                        <a class="btn btn-secondary" href="{{ route('groups.edit', [$group->id]) }}">
+                                    <form action="{{ route('groups.destroy', ['group' => $group->id]) }}" method="post">
+                                        <a class="btn btn-secondary btn-sm" href="{{ route('groups.edit', ['group' => $group->id]) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>

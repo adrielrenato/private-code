@@ -55,13 +55,16 @@
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>
-                                    <form action="{{ route('customers.destroy', [$customer->id]) }}" method="post">
-                                        <a class="btn btn-secondary" href="{{ route('customers.edit', [$customer->id]) }}">
+                                    <form action="{{ route('customers.destroy', ['customer' => $customer->id]) }}" method="post">
+                                        <a class="btn btn-info btn-sm" href="{{ route('customers.show', [$customer->id]) }}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-secondary btn-sm" href="{{ route('customers.edit', ['customer' => $customer->id]) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>

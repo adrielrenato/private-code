@@ -10,6 +10,11 @@ class CustomerPolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability)
+    {
+        
+    }
+
     /**
      * Determine whether the user can view any customers.
      *
