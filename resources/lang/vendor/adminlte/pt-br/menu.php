@@ -16,6 +16,7 @@ return [
     'groups'                        => 'Grupos',
     'customers'                     => 'Clientes',
     'users'                         => 'Usuários',
+    'logs'                          => 'Logs',
     'Important'                     => 'Importante',
     'Warning'                       => 'Aviso',
     'Information'                   => 'Informação',

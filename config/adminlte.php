@@ -209,11 +209,6 @@ return [
 
     'menu' => [
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
             'text' => 'customers',
             'url'  => 'customers',
             'icon' => 'fas fa-user-tie',
@@ -229,6 +224,11 @@ return [
             'url'  => 'users',
             'icon' => 'fas fa-id-badge',
         ],
+        [
+            'text'  => 'logs',
+            'url'   => 'logs',
+            'icon'  => 'fas fa-file-alt'
+        ]
     ],
 
     /*
