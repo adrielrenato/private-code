@@ -16,6 +16,17 @@ class PhoneByCustomerPolicy
     }
 
     /**
+     * Determine whether the user can create the phone by customer.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
+        return $user->isOwner();
+    }
+
+    /**
      * Determine whether the user can update the phone by customer.
      *
      * @param  \App\Models\User  $user

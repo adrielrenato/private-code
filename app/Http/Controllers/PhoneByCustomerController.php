@@ -3,43 +3,79 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PhoneByCustomerFormRequest;
+use App\Models\Customer;
 use App\Models\PhoneByCustomer;
 use Illuminate\Http\Request;
 
 class PhoneByCustomerController extends Controller
 {
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for creating a new resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function create($customerId)
     {
-        $phoneByCustomer = PhoneByCustomer::findOrFail($id);
+        $customer = Customer::findOrFail($customerId);
+
+        $this->authorize('create', new PhoneByCustomer());
+
+        return view('phones.create-edit', ['customer' => $customer]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\CustomerFormRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(PhoneByCustomerFormRequest $request, $customerId)
+    {
+        $customer = Customer::findOrFail($customerId);
+
+        $this->authorize('create', new Customer());
+
+        PhoneByCustomer::create(array_merge($request->validated(), ['customer_id' => $customer->id]));
+
+        return redirect()->route('customers.show', ['customer' => $customer]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $customerId
+     * @param  int  $phoneByCustomerId
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($customerId, $phoneByCustomerId)
+    {
+        $customer = Customer::findOrFail($customerId);
+        $phoneByCustomer = PhoneByCustomer::findOrFail($phoneByCustomerId);
 
         $this->authorize('update', $phoneByCustomer);
 
-        return view('phones.edit', ['phoneByCustomer' => $phoneByCustomer]);
+        return view('phones.create-edit', ['customer' => $customer, 'phoneByCustomer' => $phoneByCustomer]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\GroupFormRequest  $request
-     * @param  int  $id
+     * @param  int  $customerId
+     * @param  int  $phoneByCustomerId
      * @return \Illuminate\Http\Response
      */
-    public function update(PhoneByCustomerFormRequest $request, $id)
+    public function update(PhoneByCustomerFormRequest $request, $customerId, $phoneByCustomerId)
     {
-        $phoneByCustomer = PhoneByCustomer::findOrFail($id);
+        $customer = Customer::findOrFail($customerId);
+        $phoneByCustomer = PhoneByCustomer::findOrFail($phoneByCustomerId);
 
         $this->authorize('update', $phoneByCustomer);
 
         $phoneByCustomer->fill($request->validated())
             ->save();
 
-        return redirect()->route('customers.show', ['customer' => $phoneByCustomer->customer_id]);
+        return redirect()->route('customers.show', ['customer' => $customer]);
     }
 
     /**

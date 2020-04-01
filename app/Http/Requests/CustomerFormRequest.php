@@ -34,8 +34,7 @@ class CustomerFormRequest extends FormRequest
                     ->where('account_id', TenantFacade::account()->id)
                     ->ignore($this->customer)
             ],
-            'phone' => 'required',
-            'phone.*' => 'required|string'
+            'phone' => ''
         ];
     }
 }

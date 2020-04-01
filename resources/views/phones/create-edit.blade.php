@@ -3,13 +3,13 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Alterar telefone</h1>
+    <h1 class="m-0 text-dark">Telefones</h1>
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-md-12 text-right">
-            <a href="{{ route('customers.show', ['customer' => $phoneByCustomer->customer_id]) }}" class="btn btn-secondary">
+            <a href="{{ route('customers.show', ['customer' => $customer->id]) }}" class="btn btn-secondary">
                 Voltar
             </a>
         </div>
@@ -18,9 +18,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    @if (isset($phoneByCustomer))
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <form action="{{ route('phone_by_customers.destroy', ['phone' => $phoneByCustomer->id]) }}" method="post">
+                            <form action="{{ route('phones.destroy', ['customer' => $customer->id, 'phone' => $phoneByCustomer->id]) }}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-danger btn-sm"  data-toggle="tooltip" data-placement="top" title="Excluir telefone">
@@ -29,13 +30,14 @@
                             </form>
                         </div>
                     </div>
-                    <form action="{{ route('phone_by_customers.update', ['phone' => $phoneByCustomer->id]) }}" method="POST">
+                    @endif
+                    <form action="{{ !isset($phoneByCustomer) ? route('phones.store', ['customer' => $customer->id]) : route('phones.update', ['customer' => $customer->id, 'phone' => $phoneByCustomer->id]) }}" method="POST">
                         {{ csrf_field() }}
-                        {{ method_field('PUT') }}
+                        {{ isset($phoneByCustomer) ? method_field('PUT') : '' }}
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="phone">Número do telefone</label>
-                                <input type="text" name="phone" class="form-control" id="phone" value="{{ $phoneByCustomer->phone }}">
+                                <input type="text" name="phone" class="form-control" id="phone" value="{{ isset($phoneByCustomer) ? $phoneByCustomer->phone : '' }}">
                             </div>
                             <div class="form-group col-md-12 text-right">
                                 <button type="submit" class="btn btn-success">

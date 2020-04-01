@@ -59,9 +59,6 @@
                                         <a class="btn btn-info btn-sm" href="{{ route('customers.show', [$customer->id]) }}">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-secondary btn-sm" href="{{ route('customers.edit', ['customer' => $customer->id]) }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn btn-danger btn-sm">

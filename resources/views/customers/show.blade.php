@@ -31,25 +31,36 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
-                    <h2>Telefones para contato</h2>
-                    <ul class="list-group">
-                        @forelse ($customer->phonesByCustomer as $phoneByCustomer)
-                        <li class="list-group-item">
-                            {{ $phoneByCustomer->phone }}
-                            <a href="tel:{{ $phoneByCustomer->phone }}" class="btn btn-primary btn-sm">
-                                <i class="fas fa-phone"></i>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Telefones para contato</h2>
+                            <a href="{{ route('phones.create', ['customer' => $customer->id]) }}" class="btn btn-success btn-sm">
+                                Adicionar telefone <i class="fas fa-phone"></i>
                             </a>
-                            <a href="https://api.whatsapp.com/send?phone=+55{{ $phoneByCustomer->phone }}" class="btn btn-success btn-sm">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                            <a href="{{ route('phone_by_customers.edit', ['phone' => $phoneByCustomer->id]) }}" class="btn btn-secondary btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </li>
-                        @empty
-                        <li class="list-group-item">Nenhum telefone a ser exibido!</li>
-                        @endforelse
-                    </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <ul class="list-group">
+                                @forelse ($customer->phonesByCustomer as $phoneByCustomer)
+                                <li class="list-group-item">
+                                    {{ $phoneByCustomer->phone }}
+                                    <a href="tel:{{ $phoneByCustomer->phone }}" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-phone"></i>
+                                    </a>
+                                    <a href="https://api.whatsapp.com/send?phone=+55{{ $phoneByCustomer->phone }}" class="btn btn-success btn-sm" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                    <a href="{{ route('phones.edit', ['customer' => $customer->id, 'phone' => $phoneByCustomer->id]) }}" class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </li>
+                                @empty
+                                <li class="list-group-item">Nenhum telefone a ser exibido!</li>
+                                @endforelse
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -46,7 +46,7 @@ class CustomerController extends Controller
     {
         $this->authorize('create', new Customer());
 
-        return view('customers.create-edit');
+        return view('customers.create');
     }
 
     /**
@@ -99,7 +99,7 @@ class CustomerController extends Controller
 
         $this->authorize('update', $customer);
 
-        return view('customers.create-edit', ['customer' => $customer]);
+        return view('customers.edit', ['customer' => $customer]);
     }
 
     /**
@@ -118,7 +118,7 @@ class CustomerController extends Controller
         $customer->fill($request->validated())
             ->save();
 
-        return redirect()->route('customers.index');
+        return redirect()->route('customers.show', ['customer' => $customer]);
     }
 
     /**
