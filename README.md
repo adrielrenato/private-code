@@ -14,7 +14,7 @@
 * npm run dev (irá compilar o sass)
 * Entre na pasta database > seeders > UserSeeder.php (nesse arquivo tem um usuário e senha para você logar na ferramenta).
 
-## Show de bola, agora é o momento de iniciar a plataforma, siga os seguinte comandos.
+## Show de bola, agora é o momento de iniciar a plataforma, siga os seguinte comando.
 php artisan serve
 
 ### Está pronto, é o momento de você testar a sua agenda, espero que goste :)
