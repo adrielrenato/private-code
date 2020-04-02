@@ -23,7 +23,7 @@ class CustomerPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isOwner();
+        return true;
     }
 
     /**
@@ -35,7 +35,7 @@ class CustomerPolicy
      */
     public function view(User $user, Customer $customer)
     {
-        return $user->isOwner();
+        return true;
     }
 
     /**

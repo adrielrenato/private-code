@@ -148,11 +148,13 @@ class CustomerController extends Controller
 
     private function storePhones($request, $customer)
     {
-        foreach ($request->validated()['phone'] as $phone) {
-            PhoneByCustomer::create([
-                'customer_id' => $customer->id,
-                'phone' => $phone
-            ]);
+        if (array_key_exists('phone', $request->validated())) {
+            foreach ($request->validated()['phone'] as $phone) {
+                PhoneByCustomer::create([
+                    'customer_id' => $customer->id,
+                    'phone' => $phone
+                ]);
+            }
         }
     }
 }

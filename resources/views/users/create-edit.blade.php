@@ -23,6 +23,15 @@
                             {{ csrf_field() }}
                             {{ isset($user) ? method_field('PUT') : '' }}
                             <div class="form-group col-md-12">
+                                <label for="group-id">Grupo</label>
+                                <select name="group_id" id="group-id" class="form-control">
+                                    <option value="">Selecione um grupo (obs: se nenhum aparecer, por favor, cadastre um)</option>
+                                    @foreach ($groups as $group)
+                                    <option value="{{ $group->id }}" {{ isset($user) && $group->id === $user->group_id ? 'selected' : '' }}>{{ $group->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label for="name">Nome do usuário</label>
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Ex: Antônio" value="{{ isset($user) ? $user->name : '' }}">
                                 @if ($errors->has('name'))

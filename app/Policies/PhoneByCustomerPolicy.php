@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Permission;
 use App\Models\PhoneByCustomer;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -35,7 +36,7 @@ class PhoneByCustomerPolicy
      */
     public function update(User $user, PhoneByCustomer $phoneByCustomer)
     {
-        return $user->isOwner();
+        return $user->isOwner() || $user->group->hasPermission(Permission::UPDATE_OR_DELETE_PHONES);
     }
 
     /**
@@ -47,6 +48,6 @@ class PhoneByCustomerPolicy
      */
     public function delete(User $user, PhoneByCustomer $phoneByCustomer)
     {
-        return $user->isOwner();
+        return $user->isOwner() || $user->group->hasPermission(Permission::UPDATE_OR_DELETE_PHONES);
     }
 }

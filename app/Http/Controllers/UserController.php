@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateFormRequest;
 use App\Http\Requests\UserFormRequest;
+use App\Models\Group;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
@@ -35,7 +36,10 @@ class UserController extends Controller
     {
         $this->authorize('create', new User());
 
-        return view('users.create-edit');
+        $groups = Group::orderBy('name', 'asc')
+            ->get();
+
+        return view('users.create-edit', ['groups' => $groups]);
     }
 
     /**
@@ -48,7 +52,7 @@ class UserController extends Controller
     {
         $this->authorize('create', new User());
 
-        User::create(array_merge($request->validated(), ['user_role_id' => UserRole::USER]));
+        User::create(array_merge($this->handleRequest($request->validated()), ['user_role_id' => UserRole::USER]));
 
         return redirect()->route('users.index');
     }
@@ -76,7 +80,10 @@ class UserController extends Controller
 
         $this->authorize('update', $user);
 
-        return view('users.create-edit', ['user' => $user]);
+        $groups = Group::orderBy('name', 'asc')
+            ->get();
+
+        return view('users.create-edit', ['user' => $user, 'groups' => $groups]);
     }
 
     /**

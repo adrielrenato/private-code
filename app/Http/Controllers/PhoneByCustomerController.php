@@ -84,13 +84,12 @@ class PhoneByCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($customerId, $phoneByCustomerId)
     {
-        $phoneByCustomer = PhoneByCustomer::findOrFail($id);
+        $phoneByCustomer = PhoneByCustomer::findOrFail($phoneByCustomerId);
 
         $this->authorize('delete', $phoneByCustomer);
 
-        $customerId = $phoneByCustomer->customer_id;
         $phoneByCustomer->delete();
 
         return redirect()->route('customers.show', ['customer' => $customerId]);

@@ -10,6 +10,8 @@ class LogController extends Controller
 {
     public function index()
     {
+        $this->authorize('viewAny', new Activity());
+        
         $logs = Activity::paginate(15);
 
         return view('logs.index', ['logs' => $logs]);

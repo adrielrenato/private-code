@@ -32,6 +32,9 @@
                                 <td>{{ $group->name }}</td>
                                 <td>
                                     <form action="{{ route('groups.destroy', ['group' => $group->id]) }}" method="post">
+                                        <a class="btn btn-warning btn-sm" href="{{ route('groups-permissions.index', ['group' => $group->id]) }}">
+                                            <i class="fas fa-lock"></i>
+                                        </a>
                                         <a class="btn btn-secondary btn-sm" href="{{ route('groups.edit', ['group' => $group->id]) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>

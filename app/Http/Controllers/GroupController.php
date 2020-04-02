@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Http\Requests\GroupFormRequest;
+use App\Models\GroupPermission;
+use App\Models\Permission;
+use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
@@ -45,7 +48,11 @@ class GroupController extends Controller
     {
         $this->authorize('create', new Group());
 
-        Group::create($request->validated());
+        DB::transaction(function () use ($request) {
+            $group = Group::create($request->validated());
+
+            (new GroupPermissionController)->store($group);
+        });
 
         return redirect()->route('groups.index');
     }

@@ -20,4 +20,18 @@ class Group extends Model
     protected $fillable = [
         'name'
     ];
+    
+    public function hasPermission(int $permissionId)
+    {
+        $hasPermission = $this->permissions->where('permission_id', $permissionId)
+            ->where('active', true)
+            ->count() > 0;
+
+        return $hasPermission;
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany('App\Models\GroupPermission', 'group_id', 'id');
+    }
 }
