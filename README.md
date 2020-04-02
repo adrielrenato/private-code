@@ -18,3 +18,4 @@
 php artisan serve
 
 ### Está pronto, é o momento de você testar a sua agenda, espero que goste :)
+#### Para entender um pouco mais da plataforma, a ideia da arquitetura do sistema, entre em contato comigo pelo email: adriel.renato26@gmail.com, que irei explicar toda a ideia por trás.
