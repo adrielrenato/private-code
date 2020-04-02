@@ -28,4 +28,5 @@ Route::group(['middleware' => ['auth', 'tenant', 'check_user_has_group']], funct
     Route::resource('/customers/{customer}/phones', 'PhoneByCustomerController');
     Route::resource('/groups', 'GroupController');
     Route::resource('/customers', 'CustomerController');
+    Route::resource('/users', 'UserController');
 });
