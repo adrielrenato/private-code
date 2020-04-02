@@ -207,34 +207,7 @@ return [
     |
     */
 
-    'menu' => [
-        [
-            'text' => 'customers',
-            'url'  => 'customers',
-            'icon' => 'fas fa-user-tie',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'groups',
-            'url'  => 'groups',
-            'icon' => 'fas fa-users',
-        ],
-        [
-            'text' => 'users',
-            'url'  => 'users',
-            'icon' => 'fas fa-id-badge',
-        ],
-        [
-            'text'  => 'logs',
-            'url'   => 'logs',
-            'icon'  => 'fas fa-file-alt'
-        ],
-        [
-            'text' => 'edit_password',
-            'url'  => 'edit-password',
-            'icon' => 'fas fa-lock',
-        ],
-    ],
+    'menu' => [],
 
     /*
     |--------------------------------------------------------------------------

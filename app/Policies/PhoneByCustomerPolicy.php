@@ -17,6 +17,17 @@ class PhoneByCustomerPolicy
     }
 
     /**
+     * Determine whether the user can view any phones by customers.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function viewAny(User $user)
+    {
+        return $user->isOwner() || $user->group->hasPermission(Permission::SHOW_PHONES);
+    }
+
+    /**
      * Determine whether the user can create the phone by customer.
      *
      * @param  \App\Models\User  $user

@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Test User',
             'email' => 'test@privatecode.com',
-            'password' => Hash::make('123456'),
+            'password' => Hash::make('123456789'),
             'user_role_id' => UserRole::OWNER,
             'account_id' => 1,
             'created_at' => new Carbon(), 

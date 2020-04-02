@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+    @can('create', \App\Models\Customer::class)
     <div class="row">
         <div class="col-md-12 text-right">
             <a href="{{ route('customers.create') }}" class="btn btn-primary">
@@ -14,6 +15,7 @@
             </a>
         </div>
     </div>
+    @endif
     <div class="row mt-3">
         <div class="col-md-12">
             <div class="card">
@@ -55,16 +57,22 @@
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>
+                                    @can('delete', $customer)
                                     <form action="{{ route('customers.destroy', ['customer' => $customer->id]) }}" method="post">
+                                    @endif
                                         <a class="btn btn-info btn-sm" href="{{ route('customers.show', [$customer->id]) }}">
                                             <i class="fas fa-eye"></i>
                                         </a>
+                                        @can('delete', $customer)
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </button>
+                                        @endif
+                                    @can('delete', $customer)
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

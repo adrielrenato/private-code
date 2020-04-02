@@ -17,26 +17,31 @@
     <div class="row mt-3">
         <div class="col-md-3">
             <div class="card">
+                @can('update', $customer)
                 <div class="card-header text-right">
                     <a href="{{ route('customers.edit', ['customer' => $customer->id]) }}" class="btn btn-secondary btn-sm">
                         <i class="fas fa-edit"></i>
                     </a>
                 </div>
+                @endif
                 <div class="card-body">
                     <h2>{{ $customer->name }}</h2>
                     <h6>{{ $customer->email }}</h6>
                 </div>
             </div>
         </div>
+        @can('viewAny', \App\Models\PhoneByCustomer::class)
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
                             <h2>Telefones para contato</h2>
+                            @can('create', \App\Models\PhoneByCustomer::class)
                             <a href="{{ route('phones.create', ['customer' => $customer->id]) }}" class="btn btn-success btn-sm">
                                 Adicionar telefone <i class="fas fa-phone"></i>
                             </a>
+                            @endif
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -64,5 +69,6 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 @stop
