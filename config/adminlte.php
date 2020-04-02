@@ -228,7 +228,12 @@ return [
             'text'  => 'logs',
             'url'   => 'logs',
             'icon'  => 'fas fa-file-alt'
-        ]
+        ],
+        [
+            'text' => 'edit_password',
+            'url'  => 'edit-password',
+            'icon' => 'fas fa-lock',
+        ],
     ],
 
     /*

@@ -22,6 +22,8 @@ Auth::routes();
 Route::group(['middleware' => ['auth', 'tenant', 'check_user_has_group']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/logs', 'LogController@index')->name('logs.index');
+    Route::get('/edit-password', 'UserController@editPassword')->name('users.edit_password');
+    Route::put('/update-password', 'UserController@updatePassword')->name('users.update_password');
 
     Route::resource('/customers/{customer}/phones', 'PhoneByCustomerController');
     Route::resource('/groups', 'GroupController');

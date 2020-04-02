@@ -16,6 +16,7 @@ return [
     'groups'                        => 'Grupos',
     'customers'                     => 'Clientes',
     'users'                         => 'Usuários',
+    'edit_password'                 => 'Alterar senha',
     'logs'                          => 'Logs',
     'Important'                     => 'Importante',
     'Warning'                       => 'Aviso',
