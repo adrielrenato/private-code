@@ -29,7 +29,7 @@
                                 <td>{{ $log->description }}</td>
                                 <td>{{ $log->subject_type }}</td>
                                 <td>{{ $log->subject_id }}</td>
-                                <td>{{ $log->causer_id }}</td>
+                                <td>{{ $log->causer->name }}</td>
                             </tr>
                             @endforeach
                         </tbody>
