@@ -38,6 +38,13 @@
                             <div class="form-group col-md-12">
                                 <label for="phone">Número do telefone</label>
                                 <input type="text" name="phone" class="form-control" id="phone" value="{{ isset($phoneByCustomer) ? $phoneByCustomer->phone : '' }}">
+                                @if ($errors->has('phone'))
+                                <ul>   
+                                    @foreach($errors->get('phone') as $error)
+                                    <li class="text-danger">{{ $error }}</li>   
+                                    @endforeach   
+                                </ul> 
+                                @endif
                             </div>
                             <div class="form-group col-md-12 text-right">
                                 <button type="submit" class="btn btn-success">

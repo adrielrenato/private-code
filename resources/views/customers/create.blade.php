@@ -18,6 +18,15 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    @if ($errors->has('phone.*'))
+                    <ul>   
+                        @foreach($errors->get('phone.*') as $multipleErrors)
+                            @foreach ($multipleErrors as $error)
+                                <li class="text-danger">{{ $error }}</li>   
+                            @endforeach
+                        @endforeach   
+                    </ul> 
+                    @endif
                     <form method="POST" action="{{ !isset($customer) ? route('customers.store') : route('customers.update', [$customer->id]) }}">
                         {{ csrf_field() }}
                         {{ isset($customer) ? method_field('PUT') : '' }}
