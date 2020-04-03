@@ -34,7 +34,8 @@ class CustomerFormRequest extends FormRequest
                     ->where('account_id', TenantFacade::account()->id)
                     ->ignore($this->customer)
             ],
-            'phone' => ''
+            'phone' => '',
+            'phone.*' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:11'
         ];
     }
 }

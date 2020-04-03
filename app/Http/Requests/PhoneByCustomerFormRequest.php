@@ -24,7 +24,7 @@ class PhoneByCustomerFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => 'required|string'
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:11'
         ];
     }
 }
